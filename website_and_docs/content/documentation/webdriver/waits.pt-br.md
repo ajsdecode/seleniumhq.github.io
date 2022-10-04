@@ -1,7 +1,7 @@
 ---
 title: "Esperas"
 linkTitle: "Esperas"
-weight: 12
+weight: 6
 aliases: ["/documentation/pt-br/webdriver/waits/"]
 ---
 
@@ -84,7 +84,7 @@ assert(element.text == "Hello from JavaScript!")
 {{< /tabpane >}}
 
 O problema aqui é que a
-[estratégia de carregamento de página padrão]({{< ref "capabilities/shared#pageloadstrategy" >}})
+[estratégia de carregamento de página padrão]({{< ref "drivers/options#pageloadstrategy" >}})
 usado no WebDriver escuta o `document.readyState`
 para mudar para `"complete"` antes de retornar da chamada para _navigate_.
 Porque o elemento `p` é
@@ -151,7 +151,7 @@ WebElement firstResult = new WebDriverWait(driver, Duration.ofSeconds(10))
 System.out.println(firstResult.getText());
   {{< /tab >}}
   {{< tab header="Python" >}}
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait
 def document_initialised(driver):
     return driver.execute_script("return initialised")
 
@@ -229,10 +229,10 @@ WebElement foo = new WebDriverWait(driver, Duration.ofSeconds(3))
 assertEquals(foo.getText(), "Hello from JavaScript!");
   {{< /tab >}}
   {{< tab header="Python" >}}
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait
 
 driver.navigate("file:///race_condition.html")
-el = WebDriverWait(driver, timeout=3).until(lambda d: d.find_element_by_tag_name("p"))
+el = WebDriverWait(driver, timeout=3).until(lambda d: d.find_element(By.TAG_NAME,"p"))
 assert el.text == "Hello from JavaScript!"
   {{< /tab >}}
   {{< tab header="CSharp" >}}
